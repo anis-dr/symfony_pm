@@ -82,6 +82,15 @@
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
+    "easycorp/easyadmin-bundle": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "b131e6cbfe1b898a508987851963fff485986285"
+        }
+    },
     "egulias/email-validator": {
         "version": "3.1.2"
     },
@@ -120,6 +129,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "symfony/asset": {
+        "version": "v6.0.1"
     },
     "symfony/cache": {
         "version": "v6.0.2"
@@ -209,6 +221,9 @@
     "symfony/http-kernel": {
         "version": "v6.0.2"
     },
+    "symfony/intl": {
+        "version": "v6.0.1"
+    },
     "symfony/mailer": {
         "version": "6.0",
         "recipe": {
@@ -255,6 +270,9 @@
         "version": "v1.24.0"
     },
     "symfony/polyfill-php81": {
+        "version": "v1.24.0"
+    },
+    "symfony/polyfill-uuid": {
         "version": "v1.24.0"
     },
     "symfony/property-access": {
@@ -312,6 +330,19 @@
     "symfony/string": {
         "version": "v6.0.2"
     },
+    "symfony/translation": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.3",
+            "ref": "da64f5a2b6d96f5dc24914517c0350a5f91dee43"
+        },
+        "files": [
+            "config/packages/translation.yaml",
+            "translations/.gitignore"
+        ]
+    },
     "symfony/translation-contracts": {
         "version": "v3.0.0"
     },
@@ -330,6 +361,9 @@
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
+    },
+    "symfony/uid": {
+        "version": "v6.0.2"
     },
     "symfony/validator": {
         "version": "6.0",
@@ -366,6 +400,18 @@
     },
     "symfony/yaml": {
         "version": "v6.0.2"
+    },
+    "symfonycasts/reset-password-bundle": {
+        "version": "1.11",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "97c1627c0384534997ae1047b93be517ca16de43"
+        },
+        "files": [
+            "config/packages/reset_password.yaml"
+        ]
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.7.0"
