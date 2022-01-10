@@ -10,6 +10,8 @@ services:
       MYSQL_DATABASE: symfony_pm
       MYSQL_USER: symfony
       MYSQL_PASSWORD: symfony
+    networks:
+      - private
     ports:
       - '4306:3306'
     volumes:
@@ -17,6 +19,9 @@ services:
 
   php:
     container_name: php
+    networks:
+      - private
+      - public
     build:
       context: ./php
     ports:
@@ -29,6 +34,9 @@ services:
   nginx:
     container_name: nginx
     image: nginx:stable-alpine
+    networks:
+      - private
+      - public
     ports:
       - '8080:80'
     volumes:
@@ -37,3 +45,7 @@ services:
     depends_on:
       - php
       - database
+
+networks:
+  private:
+  public:
