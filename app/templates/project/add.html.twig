@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Add Project
+{% endblock %}
+
+{% block body %}
+    <div class="container w-75">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Add Project</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_start(project_form) }}
+                <div class="mb-3 form-group">
+                    <label for="inputEmail" class="form-label">{{ form_label(project_form.name) }}</label>
+                    {{ form_widget(project_form.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="mb-3 form-group">
+                    <label for="description" class="form-label">{{ form_label(project_form.breif) }}</label>
+                    {{ form_widget(project_form.breif, {'attr': {'class': 'form-control', 'id': 'description'}}) }}
+                    <div id="descriptionHelp" class="form-text">{{ form_help(project_form.breif) }}</div>
+                </div>
+
+                <div class="checkbox mb-3">
+                    {{ form_widget(project_form.active, {'attr': {'class': 'form-check-input'}}) }}
+                    <label class="form-label">{{ form_label(project_form.active) }}</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                {{ form_end(project_form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

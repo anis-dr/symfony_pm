@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Add Task
+{% endblock %}
+
+{% block body %}
+    <div class="container w-75">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Add Task to {{ project.name }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_start(task_form) }}
+                <div class="mb-3 form-group">
+                    <label for="inputEmail" class="form-label">{{ form_label(task_form.name) }}</label>
+                    {{ form_widget(task_form.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="mb-3 form-group">
+                    <label for="description" class="form-label">{{ form_label(task_form.breif) }}</label>
+                    {{ form_widget(task_form.breif, {'attr': {'class': 'form-control', 'id': 'description'}}) }}
+                    <div id="descriptionHelp" class="form-text">{{ form_help(task_form.breif) }}</div>
+                </div>
+
+                <div class="checkbox mb-3">
+                    {{ form_widget(task_form.done, {'attr': {'class': 'form-check-input'}}) }}
+                    <label class="form-label">{{ form_label(task_form.done) }}</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                {{ form_end(task_form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
