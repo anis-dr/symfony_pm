@@ -18,6 +18,16 @@
     </style>
 {% endblock %}
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+
+    {% if not app.user.verified %}
+        <div class="alert alert-warning" role="alert">
+            <strong>Warning!</strong> Your account is not verified. Please check your email to verify your account.
+        </div>
+    {% endif %}
+
     {% set active_projects = [] %}
     {% set inactive_projects = [] %}
 
