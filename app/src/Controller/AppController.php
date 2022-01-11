@@ -8,12 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AppController extends AbstractController
 {
-    #[Route("/homepage", name: "app_homepage")]
+    #[Route("/", name: "app_homepage")]
     public function index(): Response
     {
-        return $this->render('app/index.html.twig', [
-            'controller_name' => 'AppController',
-            'user' => $this->getUser(),
-        ]);
+        return $this->redirectToRoute('all_projects');
     }
 }

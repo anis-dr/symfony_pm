@@ -3,34 +3,37 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+    <div class="container-fluid w-50">
+        {% for flashError in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
 
-    <h1>Register</h1>
+        <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-    {% if form_errors(registrationForm) %}
-        <div class="alert alert-danger" role="alert">
-            {{ form_errors(registrationForm) }}
+        {{ form_start(registrationForm) }}
+        {% if form_errors(registrationForm) %}
+            <div class="alert alert-danger" role="alert">
+                {{ form_errors(registrationForm) }}
+            </div>
+        {% endif %}
+        <div class="mb-3">
+            <label for="inputEmail" class="form-label">{{ form_label(registrationForm.email) }}</label>
+            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
-    {% endif %}
-    <div class="mb-3">
-        <label for="inputEmail" class="form-label">{{ form_label(registrationForm.email) }}</label>
-        {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
 
-    <div class="mb-3">
-        <label class="form-label">{{ form_label(registrationForm.plainPassword, "Password") }}</label>
-        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
-    </div>
+        <div class="mb-3">
+            <label class="form-label">{{ form_label(registrationForm.plainPassword, "Password") }}</label>
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+        </div>
 
-    <div class="checkbox mb-3">
-        <label class="form-label">{{ form_label(registrationForm.agreeTerms) }}</label>
-        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
-    </div>
+        <div class="checkbox mb-3">
+            <label class="form-label">{{ form_label(registrationForm.agreeTerms) }}</label>
+            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+        </div>
 
-    <button type="submit" class="btn btn-primary">Register</button>
-    {{ form_end(registrationForm) }}
+        <button type="submit" class="btn btn-primary">Register</button>
+        <a class="ms-3" href="{{ path('app_login') }}">Login</a>
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}

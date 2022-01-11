@@ -3,45 +3,46 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <form method="post" style="margin-top: 50px">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+    <div class="w-50 container-fluid">
+        <form method="post" style="margin-top: 50px">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% else %}
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in or
-                <a href="{{ path('app_register') }}">Register</a>
-            </h1>
-            <div class="mb-3">
-                <label for="inputEmail" class="form-label">Email address</label>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
-                       class="form-control" autocomplete="email" required autofocus aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-
-            <div class="mb-3">
-                <label for="inputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" id="inputPassword"
-                       autocomplete="current-password" required>
-                <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% else %}
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <div class="mb-3">
+                    <label for="inputEmail" class="form-label">Email address</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                           class="form-control" autocomplete="email" required autofocus aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
 
                 <div class="mb-3">
-                    <a href="{{ path('app_forgot_password_request') }}">Reset password</a>
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="inputPassword"
+                           autocomplete="current-password" required>
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+
+                    <div class="mb-3">
+                        <a href="{{ path('app_forgot_password_request') }}">Reset password</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="checkbox mb-3">
-                <input type="checkbox" class="form-check-input" id="remember_me" name="_remember_me">
-                <label class="form-check-label" for="remember_me">Remember me</label>
-            </div>
+                <div class="checkbox mb-3">
+                    <input type="checkbox" class="form-check-input" id="remember_me" name="_remember_me">
+                    <label class="form-check-label" for="remember_me">Remember me</label>
+                </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        {% endif %}
-    </form>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="ms-3" href="{{ path('app_register') }}">Register</a>
+            {% endif %}
+        </form>
+    </div>
 {% endblock %}
