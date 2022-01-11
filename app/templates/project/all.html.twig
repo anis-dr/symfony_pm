@@ -18,10 +18,22 @@
     </style>
 {% endblock %}
 {% block body %}
+    {% set active_projects = [] %}
+    {% set inactive_projects = [] %}
+
+    {% for project in projects %}
+        {% if project.active %}
+            {% set active_projects = active_projects|merge([project]) %}
+        {% else %}
+            {% set inactive_projects = inactive_projects|merge([project]) %}
+        {% endif %}
+    {% endfor %}
+
+
     <div class="container w-75">
         <div class="row">
             <div class="col">
-                <h1 class="mb-4">Projects</h1>
+                <h1 class="mb-4 h3">Projects</h1>
             </div>
             <div class="col">
                 <a href="{{ path('add_project') }}" class="btn btn-primary float-end">Create Project</a>
@@ -31,38 +43,44 @@
         {% if projects is empty %}
             <p>No projects to display</p>
         {% else %}
-            <h3 class="mb-3">Active Projects</h3>
-            <ol class="list-group list-group-numbered mb-3">
-                {% for project in projects %}
-                    {% if project.active %}
-                        <li class="list-group-item d-flex justify-content-between align-items-start"
-                            go_to="{{ path('show_task_per_project',{'id': project.id }) }}">
-                            <div class="ms-2 me-auto">
-                                <div class="fw-bold">{{ project.name }}</div>
-                                <div class="text-muted">{{ project.breif|default('No description') }}</div>
-                            </div>
+            {% if active_projects|length > 0 %}
+                <h4 class="mb-3">Active Projects</h4>
+                <ol class="list-group list-group-numbered mb-3">
+                    {% for project in active_projects %}
+                        {% if project.active %}
+                            <li class="list-group-item d-flex justify-content-between align-items-start"
+                                go_to="{{ path('show_task_per_project',{'id': project.id }) }}">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">{{ project.name }}</div>
+                                    <div class="text-muted">{{ project.breif|default('No description') }}</div>
+                                </div>
 
-                            <span class="badge bg-primary rounded-pill align-self-center">{{ project.tasks.count }}</span>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ol>
-            <h3 class="mb-3">Inactive Projects</h3>
-            <ol class="list-group list-group-numbered mb-3">
-                {% for project in projects %}
-                    {% if not project.active %}
-                        <li class="list-group-item d-flex justify-content-between align-items-start text-muted"
-                            go_to="{{ path('show_task_per_project',{'id': project.id }) }}">
-                            <div class="ms-2 me-auto">
-                                <div class="fw-bold">{{ project.name }}</div>
-                                <div class="text-muted">{{ project.breif|default('No description') }}</div>
-                            </div>
+                                <span class="badge bg-primary rounded-pill align-self-center">{{ project.tasks.count }}</span>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            {% endif %}
 
-                            <span class="badge bg-warning rounded-pill align-self-center">{{ project.tasks.count }}</span>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ol>
+            {# show iactivate projects #}
+            {% if inactive_projects|length > 0 %}
+                <h4 class="mb-3">Inactive Projects</h4>
+                <ol class="list-group list-group-numbered mb-3">
+                    {% for project in inactive_projects %}
+                        {% if not project.active %}
+                            <li class="list-group-item d-flex justify-content-between align-items-start text-muted"
+                                go_to="{{ path('show_task_per_project',{'id': project.id }) }}">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">{{ project.name }}</div>
+                                    <div class="text-muted">{{ project.breif|default('No description') }}</div>
+                                </div>
+
+                                <span class="badge bg-warning rounded-pill align-self-center">{{ project.tasks.count }}</span>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}

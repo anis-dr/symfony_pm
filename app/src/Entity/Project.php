@@ -22,7 +22,7 @@ class Project
     private $active;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'projects')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private $user;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]

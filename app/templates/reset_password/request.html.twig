@@ -3,7 +3,7 @@
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-    <div class="w-50 container-fluid">
+    <div class="w-75 container-fluid">
         {% for flashError in app.flashes('reset_password_error') %}
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}

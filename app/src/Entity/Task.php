@@ -23,7 +23,7 @@ class Task
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private $project;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $breif;
 
     public function getId(): ?int

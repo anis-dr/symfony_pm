@@ -21,7 +21,7 @@ class TaskType extends AbstractType
             ->add('breif', null, [
                 'label' => 'Brief',
                 'help' => 'A short description of the task',
-                'required' => true
+                'required' => false
             ])
             // make checkbox not required
             ->add('done', CheckboxType::class, [
