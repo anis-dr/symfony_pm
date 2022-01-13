@@ -9,6 +9,10 @@ This is a project for school. It's a bit like a todo list but with a little twis
 * User can see all projects
 
 ### Running the application
+* clone the project to your local machine 
+  * ```git clone https://github.com/anis00723/symfony_pm```
+* navigate into the project directory 
+  * ```cd symfony_pm```
 * Run ```docker-compose up -d```
 * Run ```docker exec -it php /bin/bash```
 - Run these commands:
